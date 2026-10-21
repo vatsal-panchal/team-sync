@@ -26,15 +26,15 @@ const AppRoutes = () => {
 
     // dashboard routes
     {
-        path:"/home",
-        element:<DashBoardLayout/>,
-        children:[
-            {
-                path:"",
-                element:<HomePage/>
-            }
-        ]
-    }
+      path: "/home",
+      element: <DashBoardLayout />,
+      children: [
+        {
+          path: "",
+          element: <HomePage />,
+        },
+      ],
+    },
   ]);
   return <RouterProvider router={router} />;
 };

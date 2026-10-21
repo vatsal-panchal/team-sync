@@ -4,6 +4,7 @@ import AuthLayout from "../layouts/AuthLayout";
 import LoginPage from "../../features/auth/ui/pages/LoginPage";
 import RegisterPage from "../../features/auth/ui/pages/RegisterPage";
 import DashBoardLayout from "../layouts/DashBoardLayout";
+import HomePage from "../../features/dashboard/ui/pages/HomePage";
 
 const AppRoutes = () => {
   const router = createBrowserRouter([
@@ -30,7 +31,10 @@ const AppRoutes = () => {
         path:"/home",
         element:<DashBoardLayout/>,
         children:[
-            
+            {
+                path:"",
+                element:<HomePage/>
+            }
         ]
     }
   ]);

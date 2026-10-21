@@ -24,9 +24,7 @@ const AppRoutes = () => {
       ],
     },
 
-
-    //
-
+    // dashboard routes
     {
         path:"/home",
         element:<DashBoardLayout/>,

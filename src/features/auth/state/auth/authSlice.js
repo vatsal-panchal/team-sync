@@ -1,28 +1,32 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+// createSlice = Redux me state aur usko change karne ke functions banata hai
 const authsSlice = createSlice({
-    name:"auth",
+    name: "auth", // Is slice ka naam auth hai
 
-
-    initialState:{
-        employee:null,
-        isLoading:false
+    // Starting me employee login nahi hai aur loading bhi nahi ho rahi
+    initialState: {
+        employee: null,
+        isLoading: false
     },
 
-    reducers:{
-        addEmployee:(state,action) =>{
-            state.employee = action.payload,
-            state.isLoading = false
+    reducers: {
+        // Employee ka data store karna (jaise login hone par)
+        addEmployee: (state, action) => {
+            state.employee = action.payload, // Payload se employee ka data milega
+            state.isLoading = false           // Data mil gaya, loading band
         },
 
-        removeEmployee:(state) =>{
-            state.employee = null,
-            state.isLoading = false
+        // Employee ka data clear karna (jaise logout hone par)
+        removeEmployee: (state) => {
+            state.employee = null, // Employee ka data hata do
+            state.isLoading = false // Loading band kar do
         }
     }
 })
 
+// In functions ko component me dispatch karke state change kar sakte hain
+export const { addEmployee, removeEmployee } = authsSlice.actions
 
-export const {addEmployee,removeEmployee} = authsSlice.actions
-
+// Store me use karne ke liye reducer export kar rahe hain
 export default authsSlice.reducer

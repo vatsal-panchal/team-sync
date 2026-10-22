@@ -1,170 +1,124 @@
 import React from "react";
-import { Cloud, ArrowRightToLine } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useAuth } from "../../hooks/useAuth";
 
 const LoginPage = () => {
-  let { register, handleSubmit, onLoginSubmit, errors, navigate } = useAuth();
+  const { register, handleSubmit, onLoginSubmit, errors, navigate } = useAuth();
 
   return (
-    <div className="min-h-screen bg-[#09070F] relative overflow-hidden flex items-center justify-center px-4">
-      {/* Background Glow */}
-      <div className="absolute top-[-200px] left-[-200px] w-[500px] h-[500px] bg-purple-700/10 blur-3xl rounded-full" />
+    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#121212] px-4 py-10">
+      {/* Decorative background ring */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute left-1/2 top-1/2 h-[900px] w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/[0.04] bg-[radial-gradient(closest-side,rgba(255,255,255,0.035),transparent)] shadow-[inset_0_0_140px_rgba(255,255,255,0.03)]"
+      />
 
-      <div className="absolute bottom-[-200px] right-[-200px] w-[500px] h-[500px] bg-purple-700/10 blur-3xl rounded-full" />j
-
-      {/* Small Decorative Card */}
-      <div className="hidden lg:block absolute bottom-20 right-24 w-56 h-72 rounded-3xl overflow-hidden border border-white/10 bg-[#14111D]/60 backdrop-blur-xl">
-        <img
-          src="https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1200&auto=format&fit=crop"
-          alt="ai"
-          className="w-full h-full object-cover opacity-30"
-        />
-      </div>
-
-      {/* Login Card */}
-      <div className="w-full max-w-md bg-[#15121D]/90 border border-white/10 backdrop-blur-xl rounded-3xl p-8 shadow-2xl relative z-10">
-        {/* Logo */}
-        <div className="flex flex-col items-center">
-          <div className="w-16 h-16 rounded-2xl bg-purple-600 flex items-center justify-center shadow-lg shadow-purple-500/20">
-            <Cloud size={30} className="text-white" />
-          </div>
-
-          <h1 className="text-white text-4xl font-bold mt-6">team-sync</h1>
-
-          <p className="text-gray-400 mt-2 text-lg">
-            Sign in to your workspace
+      <div className="relative z-10 w-full max-w-sm">
+        <div className="text-center">
+          <h1 className="text-lg font-medium uppercase tracking-[0.35em] text-white">
+            Sign in
+          </h1>
+          <p className="mt-3 text-xs leading-relaxed text-neutral-400">
+            Enter your email and password to sign in.
           </p>
         </div>
 
-        {/* Social Buttons */}
-        <div className="grid grid-cols-2 gap-4 mt-10">
-          <button
-            type="button"
-            className="h-14 rounded-xl border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] transition flex items-center justify-center gap-3 text-white font-medium"
-          >
-            <Cloud size={18} />
-            GOOGLE
-          </button>
-
-          <button
-            type="button"
-            className="h-14 rounded-xl border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] transition flex items-center justify-center gap-3 text-white font-medium"
-          >
-            {/* <Github size={18} /> */}
-            GITHUB
-          </button>
-        </div>
-
-        {/* Divider */}
-        <div className="flex items-center gap-4 my-8">
-          <div className="h-px flex-1 bg-white/10"></div>
-
-          <span className="text-gray-500 text-sm">or continue with email</span>
-
-          <div className="h-px flex-1 bg-white/10"></div>
-        </div>
-
-        {/* Form */}
-        <form onSubmit={handleSubmit(onLoginSubmit)} className="space-y-6">
-          {/* Email */}
-          <div>
-            <div className="flex items-center justify-between mb-3">
-              <label className="text-sm font-semibold tracking-wide text-gray-300 uppercase">
-                Email Address
-              </label>
-            </div>
-
+        <form onSubmit={handleSubmit(onLoginSubmit)} className="mt-12 space-y-8">
+          <div className="group">
+            <label
+              htmlFor="email"
+              className="block text-xs text-neutral-400 transition-colors group-focus-within:text-neutral-200"
+            >
+              Email address
+            </label>
             <input
+              id="email"
               type="email"
-              placeholder="name@company.com"
-              className="w-full h-14 rounded-xl bg-[#09070F] border border-white/10 px-5 text-white outline-none focus:border-purple-500 placeholder:text-gray-500"
+              placeholder="name@example.com"
+              className={`mt-1 block w-full border-0 border-b bg-transparent px-0 py-2.5 text-sm text-white outline-none transition-colors placeholder:text-neutral-600 focus:ring-0 [&:-webkit-autofill]:[-webkit-text-fill-color:white] [&:-webkit-autofill]:shadow-[inset_0_0_0px_1000px_#121212] ${
+                errors.email
+                  ? "border-red-500/70 focus:border-red-400"
+                  : "border-white/10 hover:border-white/20 focus:border-white/60"
+              }`}
               {...register("email", {
                 required: "Email is required",
               })}
             />
-
             {errors.email && (
-              <p className="text-red-400 text-sm mt-2">
+              <p className="mt-2 text-xs text-red-400">
                 {errors.email.message}
               </p>
             )}
           </div>
 
-          {/* Password */}
-          <div>
-            <div className="flex items-center justify-between mb-3">
-              <label className="text-sm font-semibold tracking-wide text-gray-300 uppercase">
-                Password
-              </label>
-
-              <button
-                type="button"
-                className="text-sm text-purple-300 hover:text-purple-200"
-              >
-                Forgot password?
-              </button>
-            </div>
-
+          <div className="group">
+            <label
+              htmlFor="password"
+              className="block text-xs text-neutral-400 transition-colors group-focus-within:text-neutral-200"
+            >
+              Password
+            </label>
             <input
+              id="password"
               type="password"
-              placeholder="••••••••"
-              className="w-full h-14 rounded-xl bg-[#09070F] border border-white/10 px-5 text-white outline-none focus:border-purple-500 placeholder:text-gray-500"
+              placeholder="Enter your password"
+              className={`mt-1 block w-full border-0 border-b bg-transparent px-0 py-2.5 text-sm text-white outline-none transition-colors placeholder:text-neutral-600 focus:ring-0 [&:-webkit-autofill]:[-webkit-text-fill-color:white] [&:-webkit-autofill]:shadow-[inset_0_0_0px_1000px_#121212] ${
+                errors.password
+                  ? "border-red-500/70 focus:border-red-400"
+                  : "border-white/10 hover:border-white/20 focus:border-white/60"
+              }`}
               {...register("password", {
                 required: "Password is required",
               })}
             />
-
             {errors.password && (
-              <p className="text-red-400 text-sm mt-2">
+              <p className="mt-2 text-xs text-red-400">
                 {errors.password.message}
               </p>
             )}
           </div>
 
-          {/* Checkbox */}
-          <div className="flex items-center gap-3">
+          <label className="flex cursor-pointer select-none items-center gap-3 text-xs text-neutral-400 transition-colors hover:text-neutral-200">
             <input
               type="checkbox"
-              className="w-4 h-4 accent-purple-600 rounded"
+              className="peer sr-only"
               {...register("remember")}
             />
+            <span className="flex h-5 w-5 items-center justify-center rounded-md border border-white/15 bg-white/[0.02] text-white transition peer-checked:border-white/50 peer-checked:bg-white/10 peer-focus-visible:ring-2 peer-focus-visible:ring-white/30 peer-checked:[&>svg]:opacity-100">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="3"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="h-3 w-3 opacity-0 transition-opacity"
+                aria-hidden="true"
+              >
+                <path d="M20 6 9 17l-5-5" />
+              </svg>
+            </span>
+            Remember me
+          </label>
 
-            <p className="text-gray-400 text-sm">Stay signed in</p>
-          </div>
-
-          {/* Button */}
           <button
             type="submit"
-            className="w-full h-14 rounded-xl bg-purple-600 hover:bg-purple-500 transition text-white font-semibold text-lg flex items-center justify-center gap-3"
+            className="flex w-full items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/10 px-4 py-3.5 text-xs font-medium uppercase tracking-[0.25em] text-white transition hover:bg-white/15 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40 active:bg-white/20"
           >
-            Sign In
-            <ArrowRightToLine size={20} />
+            Sign in <ArrowRight size={16} />
           </button>
         </form>
 
-        {/* Footer */}
-        <div className="mt-10 border-t border-white/10 pt-8 text-center">
-          <p className="text-gray-400">
-            Don&apos;t have an account?{" "}
-            <span
-              onClick={() => navigate("/register")}
-              className="text-purple-300 font-semibold cursor-pointer hover:text-purple-200"
-            >
-              Sign Up
-            </span>
-          </p>
-        </div>
-      </div>
-
-      {/* Bottom Footer */}
-      <div className="absolute bottom-10 text-center text-gray-500 text-sm">
-        <p>© 2024 Synthetix AI. Enterprise Intelligence Platforms.</p>
-
-        <div className="flex items-center justify-center gap-6 mt-3">
-          <button className="hover:text-gray-300">Privacy Policy</button>
-
-          <button className="hover:text-gray-300">Terms of Service</button>
-        </div>
+        <p className="mt-10 text-center text-xs text-neutral-500">
+          Don't have an account?{" "}
+          <span
+            onClick={() => navigate("/register")}
+            className="cursor-pointer font-semibold text-white transition-opacity hover:opacity-80"
+          >
+            Create account
+          </span>
+        </p>
       </div>
     </div>
   );

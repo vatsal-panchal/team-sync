@@ -1,8 +1,11 @@
 import { useForm } from "react-hook-form";
 import {useNavigate} from "react-router"
+import {useDispatch} from "react-redux"
+import { loginEmployee } from "../state/auth/authAction";
+
 export const useAuth = () => {
 
-
+    let dispatch = useDispatch()
     let navigate = useNavigate()
 
   const {
@@ -18,7 +21,7 @@ export const useAuth = () => {
   };
 
   const onLoginSubmit = (data) => {
-    console.log(data);
+   dispatch(loginEmployee(data))
     reset()
   };
 

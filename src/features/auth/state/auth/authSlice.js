@@ -1,12 +1,11 @@
 
 import { createSlice } from "@reduxjs/toolkit";
-import { loginEmployee } from "./authAction";
+import { currentLoggedInEmployee, loginEmployee } from "./authAction";
 
-// createSlice = Redux me state aur usko change karne wale functions banata hai
 const authSlice = createSlice({
-  name: "auth", // Is slice ka naam auth hai
+  name: "auth",
 
-  // Starting me employee login nahi hai aur loading bhi nahi ho rahi
+  // Initial state: employee login nahi hai aur loading band hai
   initialState: {
     employee: null,
     isLoading: false,
@@ -15,38 +14,47 @@ const authSlice = createSlice({
   reducers: {
     // Employee ka data store karna
     addEmployee: (state, action) => {
-      state.employee = action.payload; // Payload se employee ka data milega
-      state.isLoading = false; // Loading band kar do
+      state.employee = action.payload;
+      state.isLoading = false;
     },
 
-    // Employee ka data clear karna (logout ke time)
+    // Logout ke time employee ka data clear karna
     removeEmployee: (state) => {
-      state.employee = null; // Employee ka data hata do
-      state.isLoading = false; // Loading band kar do
+      state.employee = null;
+      state.isLoading = false;
     },
   },
 
-  // createAsyncThunk use kiya hai, isliye API ki 3 states handle kar rahe hain:
-  // pending = API call chal rahi hai
-  // fulfilled = API call successful ho gayi
-  // rejected = API call fail ho gayi
+  // createAsyncThunk ki 3 API states handle karte hain:
+  // pending = request start, fulfilled = success, rejected = failure
   extraReducers: (builder) => {
     builder
       .addCase(loginEmployee.pending, (state) => {
-        state.isLoading = true; // API call chal rahi hai, loading chalu karo
+        state.isLoading = true;
       })
       .addCase(loginEmployee.fulfilled, (state, action) => {
-        state.employee = action.payload; // Login successful, employee ka data save karo
-        state.isLoading = false; // Loading band kar do
+        state.employee = action.payload;
+        state.isLoading = false;
       })
       .addCase(loginEmployee.rejected, (state) => {
-        state.isLoading = false; // Login fail hone par loading band kar do
+        state.isLoading = false;
+      })
+
+      //curretn Login employee API ke liye
+      .addCase(currentLoggedInEmployee.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(currentLoggedInEmployee.fulfilled, (state, action) => {
+        state.employee = action.payload;
+        state.isLoading = false;
+      })
+      .addCase(currentLoggedInEmployee.rejected, (state) => {
+        state.isLoading = false;
       });
   },
 });
 
-// In actions ko component me dispatch karke state change kar sakte hain
+// Components mein use karne ke liye actions export kar rahe hain
 export const { addEmployee, removeEmployee } = authSlice.actions;
 
-// Store me use karne ke liye reducer export kar rahe hain
 export default authSlice.reducer;

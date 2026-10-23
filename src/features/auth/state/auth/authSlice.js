@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { loginEmployee } from "./authAction";
 
 // createSlice = Redux me state aur usko change karne ke functions banata hai
-const authsSlice = createSlice({
+const authSlice = createSlice({
   name: "auth", // Is slice ka naam auth hai
 
   // Starting me employee login nahi hai aur loading bhi nahi ho rahi
@@ -14,14 +14,14 @@ const authsSlice = createSlice({
   reducers: {
     // Employee ka data store karna (jaise login hone par)
     addEmployee: (state, action) => {
-      ((state.employee = action.payload), // Payload se employee ka data milega
-        (state.isLoading = false)); // Data mil gaya, loading band
+      state.employee = action.payload, // Payload se employee ka data milega
+      state.isLoading = false; // Data mil gaya, loading band
     },
 
     // Employee ka data clear karna (jaise logout hone par)
     removeEmployee: (state) => {
-      ((state.employee = null), // Employee ka data hata do
-        (state.isLoading = false)); // Loading band kar do
+      state.employee = null, // Employee ka data hata do
+      state.isLoading = false; // Loading band kar do
     },
   },
   extraReducers: (builder) => {
@@ -40,7 +40,7 @@ const authsSlice = createSlice({
 });
 
 // In functions ko component me dispatch karke state change kar sakte hain
-export const { addEmployee, removeEmployee } = authsSlice.actions;
+export const { addEmployee, removeEmployee } = authSlice.actions;
 
 // Store me use karne ke liye reducer export kar rahe hain
-export default authsSlice.reducer;
+export default authSlice.reducer;

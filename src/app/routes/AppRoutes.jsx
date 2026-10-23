@@ -7,32 +7,36 @@ import DashBoardLayout from "../layouts/DashBoardLayout";
 import HomePage from "../../features/dashboard/ui/pages/HomePage";
 import { useDispatch } from "react-redux";
 import { currentLoggedInEmployee } from "../../features/auth/state/auth/authAction";
+import PublicRoute from "../protectedRoutes/PublicRoute";
+import ProtectedRoute from "../protectedRoutes/ProtectedRoute";
 
 const AppRoutes = () => {
-
-  let dispatch = useDispatch()
-  useEffect(() =>{
-
-    (() =>{
-      dispatch(currentLoggedInEmployee())
-    })()
-
-  },[])
-
+  let dispatch = useDispatch();
+  useEffect(() => {
+    (() => {
+      dispatch(currentLoggedInEmployee());
+    })();
+  }, []);
 
   const router = createBrowserRouter([
     //auth routes
     {
       path: "/",
-      element: <AuthLayout />,
+      element: <PublicRoute />,
       children: [
         {
           path: "",
-          element: <LoginPage />,
-        },
-        {
-          path: "register",
-          element: <RegisterPage />,
+          element: <AuthLayout />,
+          children: [
+            {
+              path: "",
+              element: <LoginPage />,
+            },
+            {
+              path: "register",
+              element: <RegisterPage />,
+            },
+          ],
         },
       ],
     },
@@ -40,11 +44,17 @@ const AppRoutes = () => {
     // dashboard routes
     {
       path: "/home",
-      element: <DashBoardLayout />,
+      element: <ProtectedRoute />,
       children: [
         {
           path: "",
-          element: <HomePage />,
+          element: <DashBoardLayout />,
+          children: [
+            {
+              path: "",
+              element: <HomePage />,
+            },
+          ],
         },
       ],
     },

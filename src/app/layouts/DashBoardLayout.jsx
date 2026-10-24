@@ -19,8 +19,10 @@ const DashBoardLayout = () => {
 
   return (
     <div>
-      <h1>this is for navbar</h1>
+      <div>navbar</div>
       <div>
+
+        <div>top nav</div>
         {/* Show the page here. */}
         <Outlet />
       </div>

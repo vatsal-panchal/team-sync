@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Outlet } from "react-router";
+import AsideNav from "../../features/dashboard/ui/components/AsideNav";
+import TopNav from "../../features/dashboard/ui/components/TopNav";
 
 const DashBoardLayout = () => {
   // Get the current theme from Redux.
@@ -20,17 +22,16 @@ const DashBoardLayout = () => {
   return (
     <div className="grid h-screen grid-cols-1 grid-rows-[auto_minmax(0,1fr)] overflow-hidden bg-[var(--bg-main)] text-[var(--text-primary)] transition-colors duration-300 md:grid-cols-[240px_minmax(0,1fr)] md:grid-rows-1">
       {/* Sidebar */}
-      <div className="overflow-y-auto border-b border-[var(--border-color)] bg-[var(--bg-surface)] p-5 text-xs font-medium uppercase tracking-[0.3em] text-[var(--text-muted)] transition-colors duration-300 md:border-b-0 md:border-r">
-        navbar
+      <div className="overflow-y-auto border-b border-[var(--border-color)] bg-[var(--bg-surface)] transition-colors duration-300 md:border-b-0 md:border-r">
+        <AsideNav />
       </div>
 
       {/* Main area */}
       <div className="flex min-h-0 flex-col overflow-y-auto">
         {/* Top bar */}
-        <div className="sticky top-0 z-10 shrink-0 border-b border-[var(--border-color)] bg-[var(--bg-main)] px-6 py-4 text-xs font-medium uppercase tracking-[0.3em] text-[var(--text-muted)] transition-colors duration-300">
-          top nav
+        <div className="sticky top-0 z-10 shrink-0">
+          <TopNav />
         </div>
-
         {/* Show the page here. */}
         <div className="flex-1 p-6">
           <Outlet />

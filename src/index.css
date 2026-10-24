@@ -1,9 +1,5 @@
 @import 'tailwindcss';
-@import '@fontsource-variable/geist';
 
-@theme {
-  --font-sans: 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
-}
 /* =========================
    DARK THEME (DEFAULT)
 ========================= */
@@ -78,5 +74,4 @@
   body {
     background: var(--bg-main);
     color: var(--text-primary);
-    transition: 0.3s ease;
   }

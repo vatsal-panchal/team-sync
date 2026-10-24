@@ -1,6 +1,7 @@
 
 import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "../features/auth/state/auth/authSlice";
+import themeReducer from "../shared/state/themeSlice"
 
 // configureStore creates the main Redux store for the app.
 export const store = configureStore({
@@ -8,5 +9,8 @@ export const store = configureStore({
   reducer: {
     // Store all auth-related data under the "auth" key.
     auth: authReducer,
+    theme:themeReducer
   },
 });
+
+

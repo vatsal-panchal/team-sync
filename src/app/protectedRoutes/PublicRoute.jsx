@@ -1,14 +1,16 @@
+
 import React from "react";
 import { useSelector } from "react-redux";
 import { Navigate, Outlet } from "react-router";
 
 const PublicRoute = () => {
+  // Get employee and loading status from Redux.
   let { employee, isLoading } = useSelector((store) => store.auth);
 
   if (isLoading)
     return (
       <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-[#121212] px-4">
-        {/* Decorative background ring */}
+        {/* Background design */}
         <div
           aria-hidden="true"
           className="pointer-events-none absolute left-1/2 top-1/2 h-[900px] w-[900px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/[0.04] bg-[radial-gradient(closest-side,rgba(255,255,255,0.035),transparent)] shadow-[inset_0_0_140px_rgba(255,255,255,0.03)]"
@@ -27,10 +29,12 @@ const PublicRoute = () => {
       </div>
     );
 
+  // Redirect logged-in users to home.
   if (employee) {
     return <Navigate to={"/home"} />;
   }
 
+  // Show the auth page if not logged in.
   return <Outlet />;
 };
 

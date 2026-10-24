@@ -12,14 +12,16 @@ import ProtectedRoute from "../protectedRoutes/ProtectedRoute";
 
 const AppRoutes = () => {
   let dispatch = useDispatch();
+
   useEffect(() => {
+    // Check the logged-in employee when the app starts.
     (() => {
       dispatch(currentLoggedInEmployee());
     })();
   }, []);
 
   const router = createBrowserRouter([
-    //auth routes
+    // Login and register routes.
     {
       path: "/",
       element: <PublicRoute />,
@@ -41,7 +43,7 @@ const AppRoutes = () => {
       ],
     },
 
-    // dashboard routes
+    // Dashboard routes for logged-in employees.
     {
       path: "/home",
       element: <ProtectedRoute />,
@@ -59,6 +61,7 @@ const AppRoutes = () => {
       ],
     },
   ]);
+
   return <RouterProvider router={router} />;
 };
 

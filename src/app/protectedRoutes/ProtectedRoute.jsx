@@ -1,8 +1,10 @@
+
 import React from "react";
 import { useSelector } from "react-redux";
 import { Navigate, Outlet } from "react-router";
 
 const ProtectedRoute = () => {
+  // Get the logged-in employee and loading status from Redux.
   let { employee, isLoading } = useSelector((store) => store.auth);
 
   if (isLoading)
@@ -27,10 +29,12 @@ const ProtectedRoute = () => {
       </div>
     );
 
+  // Redirect to the home page if the employee is not logged in.
   if (!employee) {
     return <Navigate to={"/"} />;
   }
 
+  // Render the child route if the employee is logged in.
   return <Outlet />;
 };
 

@@ -1,13 +1,17 @@
 @import 'tailwindcss';
+@import '@fontsource-variable/geist';
 
+@theme {
+  --font-sans: 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
+}
 /* =========================
    DARK THEME (DEFAULT)
 ========================= */
 
 :root {
     /* COLORS */
-    --primary: #181422;
-    --secondary: #1D1B20;
+    --primary: #171717;
+    --secondary: #1C1C1C;
     --tertiary: #C9A74D;
   
     --success: #22c55e;
@@ -15,18 +19,18 @@
     --danger: #ef4444;
   
     /* BACKGROUNDS */
-    --bg-main: #141218;
-    --bg-surface: #0F0D13;
-    --bg-card: #1e293b;
-    --bg-hover: #2b3548;
+    --bg-main: #121212;
+    --bg-surface: #0D0D0D;
+    --bg-card: #1A1A1A;
+    --bg-hover: #242424;
   
     /* TEXT */
-    --text-primary: #f8fafc;
-    --text-secondary: #cbd5e1;
-    --text-muted: #94a3b8;
+    --text-primary: #F2F2F2;
+    --text-secondary: #C4C4C4;
+    --text-muted: #8A8A8A;
   
     /* BORDER */
-    --border-color: #2d3748;
+    --border-color: #262626;
   
     /* SHADOW */
     --shadow-md: 0 8px 20px rgba(0, 0, 0, 0.3);
@@ -42,26 +46,26 @@
   .light {
     /* COLORS */
     --primary: #6063EE;
-    --secondary: #475569;
-    --tertiary: #c2410c;
+    --secondary: #525252;
+    --tertiary: #A16207;
   
     --success: #16a34a;
     --warning: #ca8a04;
     --danger: #dc2626;
   
     /* BACKGROUNDS */
-    --bg-main: #f8fafc;
+    --bg-main: #F5F5F5;
     --bg-surface: #ffffff;
-    --bg-card: #e2e8f0;
-    --bg-hover: #dbe4f0;
+    --bg-card: #EDEDED;
+    --bg-hover: #E4E4E4;
   
     /* TEXT */
-    --text-primary: #0f172a;
-    --text-secondary: #334155;
-    --text-muted: #64748b;
+    --text-primary: #171717;
+    --text-secondary: #404040;
+    --text-muted: #6B6B6B;
   
     /* BORDER */
-    --border-color: #cbd5e1;
+    --border-color: #DADADA;
   
     /* SHADOW */
     --shadow-md: 0 8px 20px rgba(0, 0, 0, 0.08);

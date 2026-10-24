@@ -1,3 +1,4 @@
+
 import React, { useEffect } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import AuthLayout from "../layouts/AuthLayout";
@@ -11,50 +12,53 @@ import PublicRoute from "../protectedRoutes/PublicRoute";
 import ProtectedRoute from "../protectedRoutes/ProtectedRoute";
 
 const AppRoutes = () => {
+  // dispatch sends actions to Redux.
   let dispatch = useDispatch();
 
+  // Run this effect when the component first loads.
   useEffect(() => {
-    // Check the logged-in employee when the app starts.
+    // Check if an employee is already logged in.
     (() => {
       dispatch(currentLoggedInEmployee());
     })();
   }, []);
 
+  // Create all app routes and decide which pages they show.
   const router = createBrowserRouter([
-    // Login and register routes.
+    // Public routes for login and register pages.
     {
       path: "/",
-      element: <PublicRoute />,
+      element: <PublicRoute />, // Redirect logged-in users away from public pages.
       children: [
         {
           path: "",
-          element: <AuthLayout />,
+          element: <AuthLayout />, // Common layout for auth pages.
           children: [
             {
               path: "",
-              element: <LoginPage />,
+              element: <LoginPage />, // Show login page at "/".
             },
             {
               path: "register",
-              element: <RegisterPage />,
+              element: <RegisterPage />, // Show register page at "/register".
             },
           ],
         },
       ],
     },
 
-    // Dashboard routes for logged-in employees.
+    // Protected routes for logged-in employees.
     {
       path: "/home",
-      element: <ProtectedRoute />,
+      element: <ProtectedRoute />, // Redirect users who are not logged in.
       children: [
         {
           path: "",
-          element: <DashBoardLayout />,
+          element: <DashBoardLayout />, // Common layout for dashboard pages.
           children: [
             {
               path: "",
-              element: <HomePage />,
+              element: <HomePage />, // Show home page at "/home".
             },
           ],
         },

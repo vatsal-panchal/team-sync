@@ -1,4 +1,9 @@
 @import 'tailwindcss';
+@import '@fontsource-variable/dm-sans';
+
+@theme {
+  --font-sans: 'DM Sans Variable', ui-sans-serif, system-ui, sans-serif;
+}
 
 /* =========================
    DARK THEME (DEFAULT)
@@ -6,24 +11,24 @@
 
 :root {
     /* COLORS */
-    --primary: #171717;
-    --secondary: #1C1C1C;
-    --tertiary: #C9A74D;
+    --primary: #0F0F0F;
+    --secondary: #141414;
+    --tertiary: #AFF24B;
   
     --success: #22c55e;
     --warning: #eab308;
     --danger: #ef4444;
   
     /* BACKGROUNDS */
-    --bg-main: #121212;
-    --bg-surface: #0D0D0D;
-    --bg-card: #1A1A1A;
-    --bg-hover: #242424;
+    --bg-main: #0A0A0A;
+    --bg-surface: #0F0F0F;
+    --bg-card: #171717;
+    --bg-hover: #1F1F1F;
   
     /* TEXT */
-    --text-primary: #F2F2F2;
-    --text-secondary: #C4C4C4;
-    --text-muted: #8A8A8A;
+    --text-primary: #FAFAFA;
+    --text-secondary: #A3A3A3;
+    --text-muted: #737373;
   
     /* BORDER */
     --border-color: #262626;
@@ -43,7 +48,7 @@
     /* COLORS */
     --primary: #6063EE;
     --secondary: #525252;
-    --tertiary: #A16207;
+    --tertiary: #4D7C0F;
   
     --success: #16a34a;
     --warning: #ca8a04;

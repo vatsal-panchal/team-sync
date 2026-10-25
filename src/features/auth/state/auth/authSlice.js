@@ -9,7 +9,7 @@ const authSlice = createSlice({
   // Default values when the app starts.
   initialState: {
     employee: null, // Stores logged-in employee data.
-    isLoading: false, // Checks if an API request is running.
+    isLoading: true, // Checks if an API request is running.
   },
 
   // Actions used to change employee data directly.

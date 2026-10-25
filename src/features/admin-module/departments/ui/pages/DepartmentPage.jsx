@@ -2,7 +2,7 @@ import React from 'react'
 
 const DepartmentPage = () => {
   return (
-    <div>DepartmentPage</div>
+    <div>DepartmentPage hu sale admin ka</div>
   )
 }
 

@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router';
 
 const AsideNav = () => {
   return (
@@ -16,6 +17,8 @@ const AsideNav = () => {
       <div className="flex flex-col gap-3 px-4 pb-4">
         {/* Navigation UI goes here */}
       </div>
+
+      <NavLink to={"/home/department"}>department</NavLink>
     </div>
   );
 }

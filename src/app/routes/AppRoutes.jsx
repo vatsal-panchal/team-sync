@@ -1,78 +1,91 @@
-
 import React, { useEffect } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router";
+import { useDispatch } from "react-redux";
+
 import AuthLayout from "../layouts/AuthLayout";
+import DashBoardLayout from "../layouts/DashBoardLayout";
+
 import LoginPage from "../../features/auth/ui/pages/LoginPage";
 import RegisterPage from "../../features/auth/ui/pages/RegisterPage";
-import DashBoardLayout from "../layouts/DashBoardLayout";
-import HomePage from "../../features/dashboard/ui/pages/HomePage";
-import { useDispatch } from "react-redux";
 import { currentLoggedInEmployee } from "../../features/auth/state/auth/authAction";
+
 import PublicRoute from "../protectedRoutes/PublicRoute";
 import ProtectedRoute from "../protectedRoutes/ProtectedRoute";
-import { commonRoutes } from "./commonRoutes";
 import RoleBaseRoute from "../protectedRoutes/RoleBaseRoute";
+
+import { commonRoutes } from "./commonRoutes";
 import { adminRoutes } from "./adminRoutes";
 import { employeeRoutes } from "./employeeRoutes";
 
 const AppRoutes = () => {
-  // dispatch sends actions to Redux.
+  // Get dispatch so we can start the login check.
   let dispatch = useDispatch();
 
-  // Run this effect when the component first loads.
   useEffect(() => {
-    // Check if an employee is already logged in.
+    // When the app opens or reloads, check if an employee is already logged in.
+    // This helps the app know the employee's details before opening protected pages.
     (() => {
       dispatch(currentLoggedInEmployee());
     })();
   }, []);
 
-  // Create all app routes and decide which pages they show.
+  // Set up all the URLs and the pages they should open.
   const router = createBrowserRouter([
-    // Public routes for login and register pages.
     {
+      // These pages can be opened without logging in.
       path: "/",
-      element: <PublicRoute />, // Redirect logged-in users away from public pages.
+      element: <PublicRoute />,
       children: [
         {
+          // Use the same layout for login and register pages.
           path: "",
-          element: <AuthLayout />, // Common layout for auth pages.
+          element: <AuthLayout />,
           children: [
             {
+              // Open the login page at "/".
               path: "",
-              element: <LoginPage />, // Show login page at "/".
+              element: <LoginPage />,
             },
             {
+              // Open the register page at "/register".
               path: "register",
-              element: <RegisterPage />, // Show register page at "/register".
+              element: <RegisterPage />,
             },
           ],
         },
       ],
     },
 
-    // Protected routes for logged-in employees.
     {
+      // Only logged-in employees can open pages under "/home".
       path: "/home",
-      element: <ProtectedRoute />, // Redirect users who are not logged in.
+      element: <ProtectedRoute />,
       children: [
         {
+          // Use the same dashboard layout for all home pages.
           path: "",
-          element: <DashBoardLayout />, // Common layout for dashboard pages.
+          element: <DashBoardLayout />,
           children: [
-            ...commonRoutes,{
-              element:<RoleBaseRoute allowedRoles= {"admin"} />,
-              children:adminRoutes
-            },{
-              element:<RoleBaseRoute allowedRoles={"employee"} />,
-              children:employeeRoutes
-            }
-          ]
+            // Both admin and employee can open these pages.
+            ...commonRoutes,
+
+            {
+              // Only users with the admin role can open these pages.
+              element: <RoleBaseRoute allowedRoles={"admin"} />,
+              children: adminRoutes,
+            },
+            {
+              // Only users with the employee role can open these pages.
+              element: <RoleBaseRoute allowedRoles={"employee"} />,
+              children: employeeRoutes,
+            },
+          ],
         },
       ],
     },
   ]);
 
+  // Give the router to the app so it can show the correct page for each URL.
   return <RouterProvider router={router} />;
 };
 

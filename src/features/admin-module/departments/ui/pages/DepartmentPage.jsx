@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Department = () => {
+const DepartmentPage = () => {
   return (
-    <div>Department</div>
+    <div>DepartmentPage</div>
   )
 }
 
-export default Department
+export default DepartmentPage

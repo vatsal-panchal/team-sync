@@ -11,6 +11,9 @@ import { currentLoggedInEmployee } from "../../features/auth/state/auth/authActi
 import PublicRoute from "../protectedRoutes/PublicRoute";
 import ProtectedRoute from "../protectedRoutes/ProtectedRoute";
 import { commonRoutes } from "./commonRoutes";
+import RoleBaseRoute from "../protectedRoutes/RoleBaseRoute";
+import { adminRoutes } from "./adminRoutes";
+import { employeeRoutes } from "./employeeRoutes";
 
 const AppRoutes = () => {
   // dispatch sends actions to Redux.
@@ -57,7 +60,13 @@ const AppRoutes = () => {
           path: "",
           element: <DashBoardLayout />, // Common layout for dashboard pages.
           children: [
-            ...commonRoutes
+            ...commonRoutes,{
+              element:<RoleBaseRoute allowedRoles= {"admin"} />,
+              children:adminRoutes
+            },{
+              element:<RoleBaseRoute allowedRoles={"employee"} />,
+              children:employeeRoutes
+            }
           ]
         },
       ],

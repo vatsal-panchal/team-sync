@@ -56,7 +56,9 @@ const AppRoutes = () => {
         {
           path: "",
           element: <DashBoardLayout />, // Common layout for dashboard pages.
-          children: commonRoutes
+          children: [
+            ...commonRoutes
+          ]
         },
       ],
     },

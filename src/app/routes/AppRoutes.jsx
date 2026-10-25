@@ -10,6 +10,7 @@ import { useDispatch } from "react-redux";
 import { currentLoggedInEmployee } from "../../features/auth/state/auth/authAction";
 import PublicRoute from "../protectedRoutes/PublicRoute";
 import ProtectedRoute from "../protectedRoutes/ProtectedRoute";
+import { commonRoutes } from "./commonRoutes";
 
 const AppRoutes = () => {
   // dispatch sends actions to Redux.
@@ -55,12 +56,7 @@ const AppRoutes = () => {
         {
           path: "",
           element: <DashBoardLayout />, // Common layout for dashboard pages.
-          children: [
-            {
-              path: "",
-              element: <HomePage />, // Show home page at "/home".
-            },
-          ],
+          children: commonRoutes
         },
       ],
     },

@@ -2,8 +2,20 @@ import React from "react";
 import { NavLink } from "react-router";
 import NavigationTab from "./NavigationTab";
 import { ChartArea } from "lucide-react";
+import { useSelector } from "react-redux";
+import {
+  adminNavigation,
+  employeeNavigation,
+} from "../../../../app/constants/Navigation";
 
 const AsideNav = () => {
+  let { employee } = useSelector((store) => store.auth);
+
+  let navigations =
+    employee?.role === "admin" ? adminNavigation : employeeNavigation;
+
+  console.log(navigations);
+
   return (
     <div>
       <div className="flex flex-col gap-1 p-4">
@@ -20,7 +32,18 @@ const AsideNav = () => {
         {/* Navigation UI goes here */}
       </div>
 
-      <NavigationTab path={"/home/chat"} Icon={<ChartArea/>} title={"chat"}/>
+      <div>
+        {navigations.map((route) => {
+          return (
+            <NavigationTab
+              key={route.path}
+              path={route.path}
+              Icon={route.Icon}
+              title={route.title}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 };

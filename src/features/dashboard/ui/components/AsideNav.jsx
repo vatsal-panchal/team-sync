@@ -1,5 +1,7 @@
-import React from 'react'
-import { NavLink } from 'react-router';
+import React from "react";
+import { NavLink } from "react-router";
+import NavigationTab from "./NavigationTab";
+import { ChartArea } from "lucide-react";
 
 const AsideNav = () => {
   return (
@@ -18,9 +20,9 @@ const AsideNav = () => {
         {/* Navigation UI goes here */}
       </div>
 
-      <NavLink to={"/home/department"}>department</NavLink>
+      <NavigationTab path={"/home/chat"} Icon={<ChartArea/>} title={"chat"}/>
     </div>
   );
-}
+};
 
-export default AsideNav
+export default AsideNav;

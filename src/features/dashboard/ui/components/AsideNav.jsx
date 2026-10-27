@@ -13,21 +13,28 @@ const AsideNav = () => {
     employee?.role === "admin" ? adminNavigation : employeeNavigation;
 
   return (
-    <aside className="min-h-full">
-      <div className="flex items-center gap-3 px-5 py-5">
-        <ChartArea size={24} />
+    <aside className="min-h-full bg-[var(--bg-card)]">
+      {/* Brand */}
+      <div className="border-b-2 border-[var(--border-color)] px-5 py-6">
+        <div className="flex items-center gap-3">
+          <div className="min-w-0">
+            <h1 className="text-lg font-extrabold tracking-tight text-[var(--text-primary)]">
+              Team-sync
+            </h1>
 
-        <div>
-          <h1 className="font-semibold text-[var(--text-primary)]">
-            Team-sync
-          </h1>
-          <p className="text-xs text-[var(--text-muted)]">
-            Enterprise workspace
-          </p>
+            <p className="mt-0.5 text-xs font-medium text-[var(--text-muted)]">
+              Enterprise workspace
+            </p>
+          </div>
         </div>
       </div>
 
-      <nav className="flex flex-col gap-1 px-3">
+      {/* Navigation */}
+      <nav className="flex flex-col gap-2 px-3 py-5">
+        <p className="mb-2 px-3 text-[10px] font-extrabold uppercase tracking-[0.18em] text-[var(--text-muted)]">
+          Workspace Menu
+        </p>
+
         {navigations.map((route) => (
           <NavigationTab
             key={route.path}

@@ -11,7 +11,7 @@ const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")).render(
   <QueryClientProvider client={queryClient}>
-    // Provider makes the Redux store available to all child components.
+    {/* // Provider makes the Redux store available to all child components. */}
     <Provider store={store}>
       <AppRoutes />
     </Provider>

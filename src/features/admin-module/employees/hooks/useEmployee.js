@@ -8,8 +8,18 @@ export const useEmployee = () => {
     staleTime: 10000,
   });
 
+
+  const handlePageChange = (newPage) => {
+  setPage(newPage);
+
+  // Fetch next page API here
+  // getEmployees(newPage)
+};
+
+
   return {
     data,
     isPending,
+    handlePageChange
   };
 };

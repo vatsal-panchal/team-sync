@@ -12,19 +12,21 @@ const DashBoardLayout = () => {
   }, [mode]);
 
   return (
-    <div className="grid h-screen grid-rows-[auto_minmax(0,1fr)] overflow-hidden bg-[var(--bg-surface)] text-[var(--text-primary)] transition-colors duration-300 md:grid-cols-[260px_minmax(0,1fr)] md:grid-rows-1">
+    <div className="fixed inset-0 grid grid-rows-[auto_minmax(0,1fr)] overflow-hidden bg-[var(--bg-surface)] text-[var(--text-primary)] transition-colors duration-300 md:grid-cols-[260px_minmax(0,1fr)] md:grid-rows-1">
       {/* Sidebar */}
       <aside className="max-h-[45vh] overflow-y-auto border-b border-[var(--border-color)] bg-[var(--bg-card)] md:max-h-none md:border-b-0 md:border-r">
         <AsideNav />
       </aside>
 
       {/* Main dashboard */}
-      <div className="flex min-h-0 flex-col overflow-y-auto bg-[var(--bg-main)]">
-        <div className="sticky top-0 z-20 border-b border-[var(--border-color)] bg-[var(--bg-main)]">
+      <div className="flex min-h-0 flex-col bg-[var(--bg-main)]">
+        {/* Top navigation (fixed, scroll nahi hoga) */}
+        <div className="shrink-0 border-b border-[var(--border-color)] bg-[var(--bg-main)]">
           <TopNav />
         </div>
 
-        <main className="relative min-w-0 flex-1 p-4 md:p-6 lg:p-8">
+        {/* Sirf ye hissa scroll hoga */}
+        <main className="relative min-h-0 min-w-0 flex-1 overflow-y-auto p-4 md:p-6 lg:p-8">
           <div className="mx-auto w-full max-w-[1600px]">
             <Outlet />
           </div>

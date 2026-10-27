@@ -6,7 +6,6 @@ const TopNav = () => {
   let dispatch = useDispatch();
   let { mode } = useSelector((store) => store.theme);
 
-  console.log(mode);
 
   const handleTheme = () => {
     dispatch(themeToggle());

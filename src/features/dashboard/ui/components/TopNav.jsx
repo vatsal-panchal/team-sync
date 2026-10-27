@@ -1,36 +1,34 @@
 import { Bell, Lightbulb, Menu, Moon, Search } from "lucide-react";
-import React from "react";
 
 const TopNav = () => {
   return (
-    <div className="flex items-center justify-between gap-4 border-b border-[var(--border-color)] bg-[var(--bg-main)] px-6 py-3 transition-colors duration-300">
-      <div className="flex w-full max-w-md items-center gap-3 rounded-lg border border-[var(--border-color)] bg-[var(--bg-card)] px-3 py-2 text-[var(--text-muted)] transition-colors duration-300 focus-within:border-[var(--text-muted)]">
+    <div className="flex items-center justify-between gap-4 border-b border-[var(--border-color)] px-5 py-3">
+      <div className="flex h-10 w-full max-w-md items-center gap-3 rounded-lg border border-[var(--border-color)] bg-[var(--bg-card)] px-3">
         <Search size={18} />
 
         <input
-          className="w-full bg-transparent text-sm text-[var(--text-primary)] outline-none placeholder:text-[var(--text-muted)]"
+          className="w-full bg-transparent text-sm text-[var(--text-primary)] outline-none"
           type="text"
-          placeholder="Search workspace.."
+          placeholder="Search workspace..."
         />
       </div>
 
-      <div className="flex items-center gap-5 text-[var(--text-muted)]">
-        <Moon
-          size={20}
-          className="cursor-pointer transition-colors hover:text-[var(--text-primary)]"
-        />
-        <Lightbulb
-          size={20}
-          className="cursor-pointer transition-colors hover:text-[var(--text-primary)]"
-        />
-        <Bell
-          size={20}
-          className="cursor-pointer transition-colors hover:text-[var(--text-primary)]"
-        />
-        <Menu
-          size={20}
-          className="cursor-pointer transition-colors hover:text-[var(--text-primary)]"
-        />
+      <div className="flex items-center gap-2">
+        <button type="button" aria-label="Theme">
+          <Moon size={20} />
+        </button>
+
+        <button type="button" aria-label="Ideas">
+          <Lightbulb size={20} />
+        </button>
+
+        <button type="button" aria-label="Notifications">
+          <Bell size={20} />
+        </button>
+
+        <button type="button" aria-label="Menu">
+          <Menu size={20} />
+        </button>
       </div>
     </div>
   );

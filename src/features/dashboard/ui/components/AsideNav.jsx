@@ -1,8 +1,6 @@
-import React from "react";
-import { NavLink } from "react-router";
-import NavigationTab from "./NavigationTab";
 import { ChartArea } from "lucide-react";
 import { useSelector } from "react-redux";
+import NavigationTab from "./NavigationTab";
 import {
   adminNavigation,
   employeeNavigation,
@@ -14,37 +12,32 @@ const AsideNav = () => {
   let navigations =
     employee?.role === "admin" ? adminNavigation : employeeNavigation;
 
-  console.log(navigations);
-
   return (
-    <div>
-      <div className="flex flex-col gap-1 p-4">
-        <h1 className="text-xl font-semibold text-[var(--text-primary)]">
-          Team-sync
-        </h1>
+    <aside className="min-h-full">
+      <div className="flex items-center gap-3 px-5 py-5">
+        <ChartArea size={24} />
 
-        <p className="text-sm text-[var(--text-secondary)]">
-          Enterprise workspace
-        </p>
+        <div>
+          <h1 className="font-semibold text-[var(--text-primary)]">
+            Team-sync
+          </h1>
+          <p className="text-xs text-[var(--text-muted)]">
+            Enterprise workspace
+          </p>
+        </div>
       </div>
 
-      <div className="flex flex-col gap-3 px-4 pb-4">
-        {/* Navigation UI goes here */}
-      </div>
-
-      <div>
-        {navigations.map((route) => {
-          return (
-            <NavigationTab
-              key={route.path}
-              path={route.path}
-              Icon={route.Icon}
-              title={route.title}
-            />
-          );
-        })}
-      </div>
-    </div>
+      <nav className="flex flex-col gap-1 px-3">
+        {navigations.map((route) => (
+          <NavigationTab
+            key={route.path}
+            path={route.path}
+            Icon={route.Icon}
+            title={route.title}
+          />
+        ))}
+      </nav>
+    </aside>
   );
 };
 

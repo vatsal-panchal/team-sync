@@ -1,19 +1,20 @@
-import React from 'react'
-import { NavLink } from 'react-router'
+import { NavLink } from "react-router";
 
 const NavigationTab = ({ path, title, Icon }) => {
   return (
     <NavLink
       to={path}
-      end="/"
+      end={path === "/home"}
       className={({ isActive }) =>
-        isActive
-          ? "flex items-center gap-4 rounded-md bg-blue-600 px-4 py-2 text-white"
-          : "flex items-center gap-4 rounded-md px-4 py-2 text-gray-600 hover:bg-gray-100"
+        `flex items-center gap-3 rounded-lg px-3 py-2 ${
+          isActive
+            ? "bg-[var(--bg-card)] text-[var(--text-primary)]"
+            : "text-[var(--text-secondary)] hover:bg-[var(--bg-card)]"
+        }`
       }
     >
-      <Icon size={21} />
-      {title}
+      <Icon size={20} />
+      <span>{title}</span>
     </NavLink>
   );
 };

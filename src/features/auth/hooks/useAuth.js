@@ -32,6 +32,7 @@ export const useAuth = () => {
     reset(); // Clear the form fields.
   };
 
+
   // Make these functions and values available to components.
   return {
     register,
@@ -42,3 +43,5 @@ export const useAuth = () => {
     navigate,
   };
 };
+
+//ok las me sab karugaa
